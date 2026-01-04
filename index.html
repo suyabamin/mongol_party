@@ -2,159 +2,52 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<title>Vondotobadi Mongol Party | Bangladesh</title>
+<title>ভণ্ডত্ববাদী মঙ্গল পার্টি | Bangladesh</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"Noto Sans Bengali", Arial, sans-serif;
-}
+*{margin:0; padding:0; box-sizing:border-box; font-family:"Noto Sans Bengali", Arial, sans-serif;}
+body{ background:#006a4e; color:#fff; }
+header{ text-align:center; padding:25px; border-bottom:8px solid #f42a41; }
+.logo{ display:flex; justify-content:center; align-items:center; gap:15px; }
+.logo img{ width:70px; height:70px; border-radius:50%; border:3px solid #f42a41; }
+header h1{ font-size:32px; }
+.lang-btn{ margin-top:10px; background:#f42a41; color:white; border:none; padding:6px 14px; cursor:pointer; border-radius:5px; }
+nav{ background:#004d38; display:flex; justify-content:center; flex-wrap:wrap; padding:10px; }
+nav a, nav button{ color:white; text-decoration:none; margin:8px 15px; font-weight:bold; background:none; border:none; cursor:pointer; font-size:16px; }
+nav a:hover, nav button:hover{ color:#f42a41; }
+section{ background:#fff; color:#333; width:90%; margin:25px auto; padding:25px; border-radius:10px; }
+.flag{ display:flex; justify-content:center; margin-bottom:20px; }
+.circle{ width:140px; height:140px; background:#f42a41; border-radius:50%; }
+section h2{ color:#006a4e; text-align:center; margin-bottom:15px; }
+.cards{ display:flex; flex-wrap:wrap; justify-content:space-around; }
+.card{ background:#f4f4f4; width:260px; margin:15px; padding:20px; border-radius:8px; border-left:6px solid #006a4e; }
+.news{ margin-top:15px; }
+.news-item{ background:#f9f9f9; padding:15px; margin:10px 0; border-left:5px solid #f42a41; cursor:pointer; }
+footer{ background:#004d38; text-align:center; padding:15px; margin-top:40px; }
+@media(max-width:768px){ header h1{font-size:26px;} .cards{flex-direction:column;align-items:center;} }
 
-body{
-    background:#006a4e;
-    color:#fff;
-}
-
-/* HEADER */
-header{
-    text-align:center;
-    padding:25px;
-    border-bottom:8px solid #f42a41;
-}
-
-.logo{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
-}
-
-.logo img{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    border:3px solid #f42a41;
-}
-
-header h1{
-    font-size:32px;
-}
-
-/* LANGUAGE BUTTON */
-.lang-btn{
-    margin-top:10px;
-    background:#f42a41;
-    color:white;
-    border:none;
-    padding:6px 14px;
-    cursor:pointer;
-    border-radius:5px;
-}
-
-/* NAV */
-nav{
-    background:#004d38;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    padding:10px;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin:8px 15px;
-    font-weight:bold;
-}
-
-nav a:hover{
-    color:#f42a41;
-}
-
-/* SECTION */
-section{
-    background:#fff;
-    color:#333;
-    width:90%;
-    margin:25px auto;
-    padding:25px;
-    border-radius:10px;
-}
-
-/* FLAG */
-.flag{
-    display:flex;
-    justify-content:center;
-    margin-bottom:20px;
-}
-
-.circle{
-    width:140px;
-    height:140px;
-    background:#f42a41;
-    border-radius:50%;
-}
-
-/* HEADINGS */
-section h2{
-    color:#006a4e;
-    text-align:center;
-    margin-bottom:15px;
-}
-
-/* CARDS */
-.cards{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-around;
-}
-
-.card{
-    background:#f4f4f4;
-    width:260px;
-    margin:15px;
-    padding:20px;
-    border-radius:8px;
-    border-left:6px solid #006a4e;
-}
-
-/* NEWS */
-.news{
-    margin-top:15px;
-}
-
-.news-item{
-    background:#f9f9f9;
-    padding:15px;
-    margin:10px 0;
-    border-left:5px solid #f42a41;
-}
-
-/* FOOTER */
-footer{
-    background:#004d38;
-    text-align:center;
-    padding:15px;
-    margin-top:40px;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-    header h1{font-size:26px;}
-    .cards{flex-direction:column;align-items:center;}
-}
+/* MODAL FORM */
+#joinModal{ display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:9999; }
+#joinModalContent{ background:#fff; padding:25px; border-radius:10px; width:90%; max-width:500px; position:relative; }
+#joinForm label{ display:block; margin-top:10px; font-weight:bold; }
+#joinForm input, #joinForm select{ width:100%; padding:8px; margin-top:5px; border-radius:5px; border:1px solid #ccc; }
+#joinForm button{ background:#f42a41; color:#fff; padding:8px 12px; border:none; border-radius:5px; cursor:pointer; margin-top:10px; width:100%; font-size:16px; }
+#joinForm button.cancel{ background:#006a4e; float:right; width:auto; padding:6px 12px; }
+#successMsg button{ background:#f42a41; color:#fff; padding:8px 12px; border:none; border-radius:5px; cursor:pointer; margin-top:10px; width:100%; font-size:16px; }
+#successMsg p{ font-size:16px; font-weight:bold; color:#006a4e; text-align:center; }
 </style>
+
+<!-- Bangla font for PDF -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
 <header>
     <div class="logo">
-        <!-- Placeholder Logo -->
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Flag_of_Bangladesh.svg/120px-Flag_of_Bangladesh.svg.png">
-        <h1 id="title">ভণ্ডতোবাদী মঙ্গল পার্টি</h1>
+        <h1 id="title">ভণ্ডত্ববাদী মঙ্গল পার্টি</h1>
     </div>
     <p id="subtitle">জনগণ • উন্নয়ন • বাংলাদেশ</p>
     <button class="lang-btn" onclick="toggleLang()">English</button>
@@ -165,23 +58,23 @@ footer{
     <a href="#ideology" id="navIdeology">আদর্শ</a>
     <a href="#news" id="navNews">সংবাদ</a>
     <a href="#contact" id="navContact">যোগাযোগ</a>
+    <button onclick="openJoinForm()">মঙ্গল পার্টিতে যোগ দিন</button>
 </nav>
 
 <section id="about">
     <div class="flag"><div class="circle"></div></div>
     <h2 id="aboutTitle">দলের পরিচিতি</h2>
     <p id="aboutText">
-        ভণ্ডতোবাদী মঙ্গল পার্টি একটি তথ্যভিত্তিক ও গণতান্ত্রিক রাজনৈতিক সংগঠন,
-        যা জাতীয় উন্নয়ন ও সামাজিক কল্যাণে বিশ্বাস করে।
+        ভণ্ডত্ববাদী মঙ্গল পার্টি একটি অপতথ্যভিত্তিক ও স্বৈরতান্ত্রিক রাজনৈতিক সংগঠন, যা জাতীয় বিশৃঙ্খলায় বিশ্বাসী।
     </p>
 </section>
 
 <section id="ideology">
     <h2 id="ideologyTitle">দলের আদর্শ</h2>
     <div class="cards">
-        <div class="card"><b id="i1">জাতীয় ঐক্য</b></div>
-        <div class="card"><b id="i2">সামাজিক ন্যায়বিচার</b></div>
-        <div class="card"><b id="i3">অর্থনৈতিক উন্নয়ন</b></div>
+        <div class="card"><b id="i1">ভন্ডত্ববাদ</b></div>
+        <div class="card"><b id="i2">চাঁদাবাজি</b></div>
+        <div class="card"><b id="i3">বিশৃঙ্খলা</b></div>
     </div>
 </section>
 
@@ -189,7 +82,7 @@ footer{
     <h2 id="newsTitle">সংবাদ ও ঘোষণা</h2>
     <div class="news">
         <div class="news-item">দলীয় সভা অনুষ্ঠিত হয়েছে – ঢাকা</div>
-        <div class="news-item">নতুন সদস্য অন্তর্ভুক্তি কার্যক্রম শুরু</div>
+        <div class="news-item" onclick="openJoinForm()">নতুন সদস্য অন্তর্ভুক্তি কার্যক্রম শুরু</div>
         <div class="news-item">সাংগঠনিক কর্মশালা সম্পন্ন</div>
     </div>
 </section>
@@ -202,34 +95,144 @@ footer{
 </section>
 
 <footer>
-    <p>© 2026 Vondotobadi Mongol Party | Bangladesh</p>
+    <p>© 2026 ভণ্ডত্ববাদী মঙ্গল পার্টি | Bangladesh</p>
 </footer>
 
+<!-- JOIN FORM MODAL -->
+<div id="joinModal">
+  <div id="joinModalContent">
+    <h2 style="color:#006a4e; text-align:center;">মঙ্গল পার্টিতে যোগ দিন</h2>
+    <form id="joinForm">
+      <label>নাম:</label>
+      <input type="text" id="name" placeholder="আপনার পূর্ণ নাম লিখুন" required>
+      <label>Age:</label>
+      <input type="number" id="age" placeholder="আপনার বয়স লিখুন" required>
+      <label>Religion:</label>
+      <input type="text" id="religion" placeholder="আপনার ধর্ম লিখুন" required>
+      <label>Marital Status:</label>
+      <select id="marital" required>
+        <option value="">বিবাহিত অবস্থা নির্বাচন করুন</option>
+        <option>Single</option>
+        <option>Married</option>
+        <option>Divorced</option>
+      </select>
+      <label>Email:</label>
+      <input type="email" id="email" placeholder="আপনার ইমেইল লিখুন" required>
+      <label>Phone:</label>
+      <input type="tel" id="phone" placeholder="আপনার ফোন নাম্বার লিখুন" required>
+      <label>Address:</label>
+      <input type="text" id="address" placeholder="আপনার ঠিকানা লিখুন" required>
+      <button type="submit">জমা দিন</button>
+      <button type="button" class="cancel" onclick="closeJoinForm()">Cancel</button>
+    </form>
+    <div id="successMsg" style="display:none; text-align:center; margin-top:15px;">
+      <p>Congratulations! You are now a part of Mongol Party.</p>
+      <button onclick="downloadPDF()">Download PDF</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 let isBangla = true;
-
 function toggleLang(){
     if(isBangla){
-        document.documentElement.lang = "en";
-        title.innerText = "Vondotobadi Mongol Party";
-        subtitle.innerText = "People • Development • Bangladesh";
-        navAbout.innerText = "About";
-        navIdeology.innerText = "Ideology";
-        navNews.innerText = "News";
-        navContact.innerText = "Contact";
-        aboutTitle.innerText = "About the Party";
-        aboutText.innerText = "An informational political organization focused on development and welfare.";
-        ideologyTitle.innerText = "Ideology";
-        i1.innerText = "National Unity";
-        i2.innerText = "Social Justice";
-        i3.innerText = "Economic Growth";
-        newsTitle.innerText = "News & Announcements";
-        contactTitle.innerText = "Contact";
-        document.querySelector(".lang-btn").innerText = "বাংলা";
-        isBangla = false;
-    } else {
-        location.reload();
-    }
+        document.documentElement.lang="en";
+        title.innerText="Vondotobadi Mongol Party";
+        subtitle.innerText="People • Development • Bangladesh";
+        navAbout.innerText="About";
+        navIdeology.innerText="Ideology";
+        navNews.innerText="News";
+        navContact.innerText="Contact";
+        aboutTitle.innerText="About the Party";
+        aboutText.innerText="Vondotobadi Mongol Party is a misleading and authoritarian political organization that believes in national chaos.";
+        ideologyTitle.innerText="Ideology";
+        i1.innerText="Corruption";
+        i2.innerText="Extortion";
+        i3.innerText="Disorder";
+        newsTitle.innerText="News & Announcements";
+        contactTitle.innerText="Contact";
+        document.querySelector(".lang-btn").innerText="বাংলা";
+        isBangla=false;
+    }else{ location.reload(); }
+}
+
+// Open / Close Join Form
+function openJoinForm(){ document.getElementById('joinModal').style.display='flex'; }
+function closeJoinForm(){ document.getElementById('joinModal').style.display='none'; }
+
+// Form Submit
+document.getElementById('joinForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('joinForm').style.display='none';
+    document.getElementById('successMsg').style.display='block';
+});
+
+// PDF Generation with watermark
+function downloadPDF(){
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const religion = document.getElementById('religion').value;
+    const marital = document.getElementById('marital').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+
+    const logoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Flag_of_Bangladesh.svg/120px-Flag_of_Bangladesh.svg.png";
+
+    // Draw watermark (semi-transparent)
+    doc.setGState(new doc.GState({opacity:0.08}));
+    doc.addImage(logoUrl,"PNG",50,100,100,100);
+    doc.setGState(new doc.GState({opacity:1}));
+
+    // Border
+    doc.setDrawColor(0,106,78);
+    doc.setLineWidth(2);
+    doc.rect(10,10,190,277);
+
+    // Header
+    doc.setFillColor(0,106,78);
+    doc.rect(10,10,190,25,'F');
+    doc.setFontSize(18);
+    doc.setTextColor(255,255,255);
+    doc.text("ভণ্ডত্ববাদী মঙ্গল পার্টি",105,27,{align:'center'});
+
+    // Party logo
+    doc.addImage(logoUrl,"PNG",90,40,30,30);
+
+    // Certificate title
+    doc.setTextColor(255,66,65);
+    doc.setFontSize(16);
+    doc.text("Membership Certificate",105,80,{align:'center'});
+
+    // User Info
+    doc.setTextColor(0,0,0);
+    doc.setFontSize(14);
+    let y=95;
+    doc.text(`Name: ${name}`,20,y); y+=10;
+    doc.text(`Age: ${age}`,20,y); y+=10;
+    doc.text(`Religion: ${religion}`,20,y); y+=10;
+    doc.text(`Marital Status: ${marital}`,20,y); y+=10;
+    doc.text(`Email: ${email}`,20,y); y+=10;
+    doc.text(`Phone: ${phone}`,20,y); y+=10;
+    doc.text(`Address: ${address}`,20,y); y+=15;
+
+    doc.setTextColor(0,106,78);
+    doc.setFontSize(14);
+    doc.text("Congratulations! You are now a member of Mongol Party.",105,y,{align:'center'});
+
+    // Footer
+    doc.setDrawColor(0,106,78);
+    doc.setLineWidth(1);
+    doc.line(20,280,190,280);
+    doc.setFontSize(10);
+    doc.setTextColor(0,0,0);
+    doc.text("© 2026 ভণ্ডত্ববাদী মঙ্গল পার্টি | Bangladesh",105,290,{align:'center'});
+
+    doc.save(`${name}_mongol_party_certificate.pdf`);
 }
 </script>
 

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>Vondotobadi Mongol Party | Bangladesh</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Noto Sans Bengali", Arial, sans-serif;
+}
+
+body{
+    background:#006a4e;
+    color:#fff;
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    padding:25px;
+    border-bottom:8px solid #f42a41;
+}
+
+.logo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+}
+
+.logo img{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    border:3px solid #f42a41;
+}
+
+header h1{
+    font-size:32px;
+}
+
+/* LANGUAGE BUTTON */
+.lang-btn{
+    margin-top:10px;
+    background:#f42a41;
+    color:white;
+    border:none;
+    padding:6px 14px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+/* NAV */
+nav{
+    background:#004d38;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    padding:10px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:8px 15px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#f42a41;
+}
+
+/* SECTION */
+section{
+    background:#fff;
+    color:#333;
+    width:90%;
+    margin:25px auto;
+    padding:25px;
+    border-radius:10px;
+}
+
+/* FLAG */
+.flag{
+    display:flex;
+    justify-content:center;
+    margin-bottom:20px;
+}
+
+.circle{
+    width:140px;
+    height:140px;
+    background:#f42a41;
+    border-radius:50%;
+}
+
+/* HEADINGS */
+section h2{
+    color:#006a4e;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+/* CARDS */
+.cards{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-around;
+}
+
+.card{
+    background:#f4f4f4;
+    width:260px;
+    margin:15px;
+    padding:20px;
+    border-radius:8px;
+    border-left:6px solid #006a4e;
+}
+
+/* NEWS */
+.news{
+    margin-top:15px;
+}
+
+.news-item{
+    background:#f9f9f9;
+    padding:15px;
+    margin:10px 0;
+    border-left:5px solid #f42a41;
+}
+
+/* FOOTER */
+footer{
+    background:#004d38;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    header h1{font-size:26px;}
+    .cards{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <!-- Placeholder Logo -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Flag_of_Bangladesh.svg/120px-Flag_of_Bangladesh.svg.png">
+        <h1 id="title">ভণ্ডতোবাদী মঙ্গল পার্টি</h1>
+    </div>
+    <p id="subtitle">জনগণ • উন্নয়ন • বাংলাদেশ</p>
+    <button class="lang-btn" onclick="toggleLang()">English</button>
+</header>
+
+<nav>
+    <a href="#about" id="navAbout">পরিচিতি</a>
+    <a href="#ideology" id="navIdeology">আদর্শ</a>
+    <a href="#news" id="navNews">সংবাদ</a>
+    <a href="#contact" id="navContact">যোগাযোগ</a>
+</nav>
+
+<section id="about">
+    <div class="flag"><div class="circle"></div></div>
+    <h2 id="aboutTitle">দলের পরিচিতি</h2>
+    <p id="aboutText">
+        ভণ্ডতোবাদী মঙ্গল পার্টি একটি তথ্যভিত্তিক ও গণতান্ত্রিক রাজনৈতিক সংগঠন,
+        যা জাতীয় উন্নয়ন ও সামাজিক কল্যাণে বিশ্বাস করে।
+    </p>
+</section>
+
+<section id="ideology">
+    <h2 id="ideologyTitle">দলের আদর্শ</h2>
+    <div class="cards">
+        <div class="card"><b id="i1">জাতীয় ঐক্য</b></div>
+        <div class="card"><b id="i2">সামাজিক ন্যায়বিচার</b></div>
+        <div class="card"><b id="i3">অর্থনৈতিক উন্নয়ন</b></div>
+    </div>
+</section>
+
+<section id="news">
+    <h2 id="newsTitle">সংবাদ ও ঘোষণা</h2>
+    <div class="news">
+        <div class="news-item">দলীয় সভা অনুষ্ঠিত হয়েছে – ঢাকা</div>
+        <div class="news-item">নতুন সদস্য অন্তর্ভুক্তি কার্যক্রম শুরু</div>
+        <div class="news-item">সাংগঠনিক কর্মশালা সম্পন্ন</div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 id="contactTitle">যোগাযোগ</h2>
+    <p>Email: info@vondotobadimongolparty.org</p>
+    <p>Phone: +880-XXXXXXXXXX</p>
+    <p>Address: Dhaka, Bangladesh</p>
+</section>
+
+<footer>
+    <p>© 2026 Vondotobadi Mongol Party | Bangladesh</p>
+</footer>
+
+<script>
+let isBangla = true;
+
+function toggleLang(){
+    if(isBangla){
+        document.documentElement.lang = "en";
+        title.innerText = "Vondotobadi Mongol Party";
+        subtitle.innerText = "People • Development • Bangladesh";
+        navAbout.innerText = "About";
+        navIdeology.innerText = "Ideology";
+        navNews.innerText = "News";
+        navContact.innerText = "Contact";
+        aboutTitle.innerText = "About the Party";
+        aboutText.innerText = "An informational political organization focused on development and welfare.";
+        ideologyTitle.innerText = "Ideology";
+        i1.innerText = "National Unity";
+        i2.innerText = "Social Justice";
+        i3.innerText = "Economic Growth";
+        newsTitle.innerText = "News & Announcements";
+        contactTitle.innerText = "Contact";
+        document.querySelector(".lang-btn").innerText = "বাংলা";
+        isBangla = false;
+    } else {
+        location.reload();
+    }
+}
+</script>
+
+</body>
+</html>

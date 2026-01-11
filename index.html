@@ -1,240 +1,365 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<title>ভণ্ডত্ববাদী মঙ্গল পার্টি | Bangladesh</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ভণ্ডত্ববাদী মঙ্গল পার্টি | Full Integrated Version</title>
 
-<style>
-*{margin:0; padding:0; box-sizing:border-box; font-family:"Noto Sans Bengali", Arial, sans-serif;}
-body{ background:#006a4e; color:#fff; }
-header{ text-align:center; padding:25px; border-bottom:8px solid #f42a41; }
-.logo{ display:flex; justify-content:center; align-items:center; gap:15px; }
-.logo img{ width:70px; height:70px; border-radius:50%; border:3px solid #f42a41; }
-header h1{ font-size:32px; }
-.lang-btn{ margin-top:10px; background:#f42a41; color:white; border:none; padding:6px 14px; cursor:pointer; border-radius:5px; }
-nav{ background:#004d38; display:flex; justify-content:center; flex-wrap:wrap; padding:10px; }
-nav a, nav button{ color:white; text-decoration:none; margin:8px 15px; font-weight:bold; background:none; border:none; cursor:pointer; font-size:16px; }
-nav a:hover, nav button:hover{ color:#f42a41; }
-section{ background:#fff; color:#333; width:90%; margin:25px auto; padding:25px; border-radius:10px; }
-.flag{ display:flex; justify-content:center; margin-bottom:20px; }
-.circle{ width:140px; height:140px; background:#f42a41; border-radius:50%; }
-section h2{ color:#006a4e; text-align:center; margin-bottom:15px; }
-.cards{ display:flex; flex-wrap:wrap; justify-content:space-around; }
-.card{ background:#f4f4f4; width:260px; margin:15px; padding:20px; border-radius:8px; border-left:6px solid #006a4e; }
-.news{ margin-top:15px; }
-.news-item{ background:#f9f9f9; padding:15px; margin:10px 0; border-left:5px solid #f42a41; cursor:pointer; }
-footer{ background:#004d38; text-align:center; padding:15px; margin-top:40px; }
-@media(max-width:768px){ header h1{font-size:26px;} .cards{flex-direction:column;align-items:center;} }
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-/* MODAL FORM */
-#joinModal, #candidateModal{ display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:9999; }
-#joinModalContent, #candidateModalContent{ background:#fff; padding:25px; border-radius:10px; width:90%; max-width:550px; position:relative; max-height: 90vh; overflow-y: auto; color: #333; }
-.custom-form label{ display:block; margin-top:10px; font-weight:bold; color: #006a4e; }
-.custom-form input, .custom-form select, .custom-form textarea{ width:100%; padding:8px; margin-top:5px; border-radius:5px; border:1px solid #ccc; }
-.custom-form button{ background:#f42a41; color:#fff; padding:10px; border:none; border-radius:5px; cursor:pointer; margin-top:15px; width:100%; font-size:16px; }
-.cancel-btn{ background:#666 !important; margin-top: 5px !important; }
-</style>
+    <style>
+        :root {
+            --primary-green: #006a4e;
+            --primary-red: #f42a41;
+            --gold: #b8860b;
+            --bg-body: linear-gradient(135deg, #006a4e 0%, #003325 100%);
+            --glass: rgba(255, 255, 255, 0.95);
+            --text-main: #333;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+        .dark-mode {
+            --bg-body: #121212;
+            --glass: rgba(30, 30, 30, 0.95);
+            --text-main: #f4f4f4;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Noto Sans Bengali', sans-serif; transition: 0.3s ease; }
+        body { background: var(--bg-body); color: #fff; scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+
+        header { 
+            text-align:center; padding: 60px 20px; 
+            border-bottom: 8px solid var(--primary-red); 
+            background: url('https://www.transparenttextures.com/patterns/cubes.png'), var(--primary-green);
+        }
+        .logo img { width: 100px; height: 100px; border-radius: 50%; border: 4px solid #fff; animation: pulseLogo 2s infinite; }
+
+        @keyframes pulseLogo {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+            100% { transform: scale(1); }
+        }
+
+        nav { 
+            background: var(--glass); position: sticky; top: 0; z-index: 1000; 
+            display: flex; justify-content: center; align-items: center; padding: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); flex-wrap: wrap;
+        }
+        nav a, nav button { color: var(--primary-green); text-decoration: none; margin: 5px 12px; font-weight: 700; cursor: pointer; border: none; background: none; font-size: 15px; }
+        
+        .top-controls { position: fixed; top: 15px; right: 15px; display: flex; gap: 8px; z-index: 2000; }
+        .control-btn { background: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); color: #333; }
+
+        section { max-width: 1100px; margin: 30px auto; padding: 40px; background: var(--glass); color: var(--text-main); border-radius: 20px; width: 92%; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 25px; }
+        
+        .card-style { background: #fff; padding: 25px; border-radius: 15px; text-align: center; border-bottom: 5px solid var(--gold); }
+        .leader-card { background: #fff; padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .leader-photo { width: 120px; height: 150px; object-fit: cover; border: 2px solid var(--primary-green); border-radius: 8px; }
+        
+        .gallery-item { height: 200px; overflow: hidden; border-radius: 10px; border: 3px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+        #adminPanel { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; overflow-y:auto; padding:15px; }
+        .admin-box { background:white; max-width:650px; margin:auto; padding:25px; border-radius:15px; color:#333; }
+        input, textarea, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; }
+        .btn-main { background: var(--primary-red); color: #fff; border: none; padding: 12px; width: 100%; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+
+        .del-item { display: flex; justify-content: space-between; align-items: center; background: #f9f9f9; padding: 10px; border-radius: 5px; margin-top: 5px; border-bottom: 1px solid #eee; }
+        .del-btn { background: #ff4757; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+
+        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index:5000; justify-content:center; align-items:center; padding: 10px; }
+        .modal-content { background: #fff; padding: 25px; border-radius: 20px; width: 100%; max-width: 500px; color: #333; max-height: 90vh; overflow-y: auto; text-align: center; }
+        
+        footer { background: #002b1f; text-align: center; padding: 30px; color: white; margin-top: 20px; }
+    </style>
 </head>
-
 <body>
 
+<div class="top-controls">
+    <button class="control-btn" onclick="toggleDarkMode()">🌓</button>
+    <button class="control-btn" onclick="toggleLanguage()">🌐</button>
+    <button class="control-btn" onclick="adminLogin()">⚙️</button>
+</div>
+
 <header>
-    <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Flag_of_Bangladesh.svg/120px-Flag_of_Bangladesh.svg.png">
-        <h1 id="title">ভণ্ডত্ববাদী মঙ্গল পার্টি</h1>
+    <div class="animate__animated animate__fadeInDown">
+        <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Flag_of_Bangladesh.svg/120px-Flag_of_Bangladesh.svg.png"></div>
+        <h1 id="txt-partyName">ভণ্ডত্ববাদী মঙ্গল পার্টি</h1>
+        <p id="txt-slogan">জনগণ • উন্নয়ন • বাংলাদেশ</p>
     </div>
-    <p id="subtitle">জনগণ • উন্নয়ন • বাংলাদেশ</p>
-    <button class="lang-btn" onclick="toggleLang()">English</button>
 </header>
 
 <nav>
-    <a href="#about" id="navAbout">পরিচিতি</a>
-    <a href="#ideology" id="navIdeology">আদর্শ</a>
-    <a href="#news" id="navNews">সংবাদ</a>
-    <a href="#contact" id="navContact">যোগাযোগ</a>
-    <button onclick="openJoinForm()">মঙ্গল পার্টিতে যোগ দিন</button>
-    <button onclick="openCandidateForm()" style="background:#f42a41; padding:5px 12px; border-radius:5px;">প্রার্থী ফর্ম</button>
+    <a href="#about">পরিচিতি</a>
+    <a href="#ideology">আদর্শ</a>
+    <a href="#leaders">নেতৃবৃন্দ</a>
+    <a href="#gallery">গ্যালারি</a>
+    <button onclick="openModal('joinModal')">সদস্য হন</button>
+    <button onclick="openModal('candidateModal')" style="background:var(--primary-red); color:#fff; padding:6px 15px; border-radius:20px;">প্রার্থী ফর্ম</button>
 </nav>
 
-<section id="about">
-    <div class="flag"><div class="circle"></div></div>
-    <h2 id="aboutTitle">দলের পরিচিতি</h2>
-    <p id="aboutText">
-        ভণ্ডত্ববাদী মঙ্গল পার্টি একটি অপতথ্যভিত্তিক ও স্বৈরতান্ত্রিক রাজনৈতিক সংগঠন, যা জাতীয় বিশৃঙ্খলায় বিশ্বাসী।
-    </p>
+<section id="about" data-aos="fade-up">
+    <h2 id="txt-aboutHeader" style="text-align:center; color:var(--primary-green);">দলের পরিচিতি</h2>
+    <p id="txt-aboutBody" style="text-align:center; margin-top:15px;">ভণ্ডত্ববাদী মঙ্গল পার্টি একটি আধুনিক রাজনৈতিক সংগঠন। আমরা বিশৃঙ্খলা নয়, বরং পরিবর্তনের মাধ্যমে নতুন সম্ভাবনা খুঁজি।</p>
 </section>
 
-<section id="ideology">
-    <h2 id="ideologyTitle">দলের আদর্শ</h2>
-    <div class="cards">
-        <div class="card"><b id="i1">ভন্ডত্ববাদ</b></div>
-        <div class="card"><b id="i2">চাঁদাবাজি</b></div>
-        <div class="card"><b id="i3">বিশৃঙ্খলা</b></div>
+<section id="ideology" data-aos="zoom-in">
+    <h2 style="text-align:center; color:var(--primary-green);">আমাদের আদর্শ</h2>
+    <div class="grid-container">
+        <div class="card-style"><h3 id="txt-id1">ভন্ডত্ববাদ</h3></div>
+        <div class="card-style"><h3 id="txt-id2">চাঁদাবাজি</h3></div>
+        <div class="card-style"><h3 id="txt-id3">বিৃঙ্খলা</h3></div>
     </div>
 </section>
 
-<section id="news">
-    <h2 id="newsTitle">সংবাদ ও ঘোষণা</h2>
-    <div class="news">
-        <div class="news-item">দলীয় সভা অনুষ্ঠিত হয়েছে – ঢাকা</div>
-        <div class="news-item" onclick="openJoinForm()">নতুন সদস্য অন্তর্ভুক্তি কার্যক্রম শুরু</div>
-        <div class="news-item">সাংগঠনিক কর্মশালা সম্পন্ন</div>
-    </div>
+<section id="leaders" data-aos="fade-right">
+    <h2 id="txt-leadersHeader" style="color:var(--primary-green); text-align:center;">জনপ্রিয় প্রতিনিধি</h2>
+    <div class="grid-container" id="leader-list"></div>
 </section>
 
-<section id="contact">
-    <h2 id="contactTitle">যোগাযোগ</h2>
-    <p>Email: info@vondotobadimongolparty.org</p>
-    <p>Phone: +880-XXXXXXXXXX</p>
-    <p>Address: Dhaka, Bangladesh</p>
+<section id="gallery" data-aos="fade-left">
+    <h2 id="txt-galleryHeader" style="color:var(--primary-green); text-align:center;">ইভেন্ট গ্যালারি</h2>
+    <div class="grid-container" id="gallery-list"></div>
 </section>
 
-<footer>
-    <p>© 2026 ভণ্ডত্ববাদী মঙ্গল পার্টি | Bangladesh</p>
-</footer>
-
-<div id="joinModal">
-  <div id="joinModalContent">
-    <h2 style="color:#006a4e; text-align:center;">মঙ্গল পার্টিতে যোগ দিন</h2>
-    <form id="joinForm" class="custom-form">
-      <label>নাম:</label> <input type="text" id="name" placeholder="আপনার পূর্ণ নাম লিখুন" required>
-      <label>Age:</label> <input type="number" id="age" placeholder="আপনার বয়স লিখুন" required>
-      <label>Religion:</label> <input type="text" id="religion" placeholder="আপনার ধর্ম লিখুন" required>
-      <label>Marital Status:</label>
-      <select id="marital" required>
-        <option value="">বিবাহিত অবস্থা নির্বাচন করুন</option>
-        <option>Single</option>
-        <option>Married</option>
-        <option>Divorced</option>
-      </select>
-      <label>Email:</label> <input type="email" id="email" placeholder="আপনার ইমেইল লিখুন" required>
-      <label>Phone:</label> <input type="tel" id="phone" placeholder="আপনার ফোন নাম্বার লিখুন" required>
-      <label>Address:</label> <input type="text" id="address" placeholder="আপনার ঠিকানা লিখুন" required>
-      <button type="submit">জমা দিন</button>
-      <button type="button" class="cancel-btn" onclick="closeJoinForm()">Cancel</button>
-    </form>
-    <div id="successMsg" style="display:none; text-align:center; margin-top:15px;">
-      <p style="color: green; font-weight: bold;">Congratulations! You are now a part of Mongol Party.</p>
-      <button onclick="downloadPDF()" style="background:#f42a41; color:white; padding:10px; width:100%; border:none; border-radius:5px; margin-top:10px; cursor:pointer;">Download PDF</button>
+<div id="adminPanel">
+    <div class="admin-box">
+        <h3>অ্যাডমিন প্যানেল</h3>
+        <hr><br>
+        <input type="text" id="edit-partyName" placeholder="দলের নাম">
+        <textarea id="edit-aboutBody" placeholder="পরিচিতি টেক্সট"></textarea>
+        <button class="btn-main" onclick="saveAllTexts()">সেভ টেক্সট</button>
+        <hr><br>
+        <h4>প্রতিনিধি ও গ্যালারি ম্যানেজমেন্ট</h4>
+        <input type="text" id="leaderName" placeholder="নাম">
+        <input type="text" id="leaderRole" placeholder="পদবী">
+        <input type="text" id="leaderImg" placeholder="ছবির URL">
+        <button class="btn-main" style="background:green" onclick="saveLeader()">প্রতিনিধি সেভ</button>
+        <div id="admin-leader-list"></div>
+        <hr><br>
+        <input type="text" id="galleryImgUrl" placeholder="গ্যালারি ছবির URL">
+        <button class="btn-main" style="background:green" onclick="saveGalleryPhoto()">গ্যালারিতে যোগ করুন</button>
+        <div id="admin-gallery-list"></div>
+        <br>
+        <button class="btn-main" style="background:#333;" onclick="document.getElementById('adminPanel').style.display='none'">বন্ধ করুন</button>
     </div>
-  </div>
 </div>
 
-<div id="candidateModal">
-  <div id="candidateModalContent">
-    <h2 style="color:#006a4e; text-align:center;">প্রার্থী আবেদনের ফর্ম</h2>
-    <form id="candidateForm" class="custom-form">
-      <label>প্রার্থীর নাম:</label> <input type="text" id="cName" name="cName" required>
-      <label>বয়স:</label> <input type="number" id="cAge" name="cAge" required>
-      <label>ঠিকানা:</label> <input type="text" id="cAddress" name="cAddress" required>
-      <label>মোট স্থাবর অস্থাবর সম্পত্তি:</label> <input type="text" id="cAssets" name="cAssets" required>
-      <label>বউয়ের সম্পত্তি:</label> <input type="text" id="cWifeAssets" name="cWifeAssets" required>
-      <label>যে আসনে প্রার্থী হতে আগ্রহী:</label> <input type="text" id="cSeat" name="cSeat" required>
-      <label>মঙ্গল পার্টি থেকে নির্বাচন করতে চাওয়ার কারন:</label> <textarea id="cReason" name="cReason" required></textarea>
-      <label>ছবি যুক্ত করুন (Image):</label> <input type="file" id="cPhoto" accept="image/*" required>
-      
-      <button type="submit" id="cSubmitBtn">আবেদন জমা দিন</button>
-      <button type="button" class="cancel-btn" onclick="closeCandidateForm()">বন্ধ করুন</button>
-    </form>
-  </div>
+<div id="joinModal" class="modal">
+    <div class="modal-content">
+        <h2 style="color:var(--primary-green);">সদস্যপদ ফরম</h2>
+        <form id="joinForm">
+            <input type="text" name="name" placeholder="আপনার নাম" required>
+            <input type="number" name="age" placeholder="বয়স" required>
+            <input type="tel" name="phone" placeholder="ফোন নাম্বার" required>
+            <textarea name="address" placeholder="ঠিকানা" required></textarea>
+            <button type="submit" class="btn-main">আবেদন জমা দিন</button>
+            <button type="button" onclick="closeModal('joinModal')" class="btn-main" style="background:#666;">বন্ধ করুন</button>
+        </form>
+    </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<div id="candidateModal" class="modal">
+    <div class="modal-content">
+        <h2 style="color:var(--primary-red);">প্রার্থী আবেদন ফরম</h2>
+        <form id="candidateForm">
+            <input type="text" id="cName" name="name" placeholder="পূর্ণ নাম" required>
+            <input type="number" name="age" placeholder="বয়স" required>
+            <input type="text" name="assets" placeholder="মোট সম্পদ" required>
+            <input type="text" id="cSeat" name="seat" placeholder="আকাঙ্ক্ষিত আসন" required>
+            <input type="text" name="wife_assets" placeholder="বউয়ের সম্পদ" required>
+            <textarea name="purpose" placeholder="উদ্দেশ্য" required></textarea>
+            <p style="text-align:left; font-size:12px; font-weight:bold;">ছবি নির্বাচন করুন:</p>
+            <input type="file" id="imageInput" required>
+            <button type="submit" class="btn-main" id="subBtn">নমিনেশন জমা দিন</button>
+            <button type="button" onclick="closeModal('candidateModal')" class="btn-main" style="background:#666;">বন্ধ করুন</button>
+        </form>
+    </div>
+</div>
+
+<div id="congratsModal" class="modal">
+    <div class="modal-content animate__animated animate__zoomIn">
+        <h1 style="color:var(--primary-green);">অভিনন্দন! 🎉</h1>
+        <p>আপনার সকল তথ্য গুগল শিটে সফলভাবে সংরক্ষিত হয়েছে।</p>
+        <button class="btn-main" style="background:#000;" onclick="downloadPDF()">📥 ডাউনলোড PDF কপি</button>
+        <button class="btn-main" style="background:#666;" onclick="closeModal('congratsModal')">বন্ধ করুন</button>
+    </div>
+</div>
+
+<footer>© 2026 ভণ্ডত্ববাদী মঙ্গল পার্টি | বাংলাদেশ</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-// Original Functions
-let isBangla = true;
-function toggleLang(){
-    if(isBangla){
-        document.documentElement.lang="en";
-        document.getElementById('title').innerText="Vondotobadi Mongol Party";
-        document.getElementById('subtitle').innerText="People • Development • Bangladesh";
-        document.getElementById('navAbout').innerText="About";
-        document.getElementById('navIdeology').innerText="Ideology";
-        document.getElementById('navNews').innerText="News";
-        document.getElementById('navContact').innerText="Contact";
-        document.getElementById('aboutTitle').innerText="About the Party";
-        document.getElementById('aboutText').innerText="Vondotobadi Mongol Party is a misleading and authoritarian political organization that believes in national chaos.";
-        document.getElementById('ideologyTitle').innerText="Ideology";
-        document.getElementById('i1').innerText="Corruption";
-        document.getElementById('i2').innerText="Extortion";
-        document.getElementById('i3').innerText="Disorder";
-        document.getElementById('newsTitle').innerText="News & Announcements";
-        document.getElementById('contactTitle').innerText="Contact";
-        document.querySelector(".lang-btn").innerText="বাংলা";
-        isBangla=false;
-    }else{ location.reload(); }
-}
+    AOS.init({ duration: 800, once: true });
 
-function openJoinForm(){ document.getElementById('joinModal').style.display='flex'; }
-function closeJoinForm(){ document.getElementById('joinModal').style.display='none'; }
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzSOg3KG8ZD_wlShPBxhotEAegEFY-HkrXJnWNWN1-YbE3e8qiVcJhS56L389QnfK4r/exec';
 
-document.getElementById('joinForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    document.getElementById('joinForm').style.display='none';
-    document.getElementById('successMsg').style.display='block';
-});
+    // ১. ডাটা সেভ লজিক (ইমেজ সহ Fetcher)
+    document.getElementById('candidateForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('subBtn');
+        const form = e.target;
+        btn.innerText = "জমা হচ্ছে...";
+        btn.disabled = true;
 
-// Candidate Form Functions
-function openCandidateForm(){ document.getElementById('candidateModal').style.display='flex'; }
-function closeCandidateForm(){ document.getElementById('candidateModal').style.display='none'; }
+        const fileInput = document.getElementById('imageInput');
+        const file = fileInput.files[0];
+        const reader = new FileReader();
 
-document.getElementById('candidateForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const btn = document.getElementById('cSubmitBtn');
-    btn.innerText = "আপলোড হচ্ছে...";
-    btn.disabled = true;
+        reader.onload = function(event) {
+            const base64Data = event.target.result.split(',')[1];
+            const formData = new FormData(form);
+            
+            const params = new URLSearchParams();
+            for (const pair of formData) { 
+                params.append(pair[0], pair[1]); 
+            }
+            params.append('imageFile', base64Data);
+            params.append('fileName', file.name);
 
-    const fileInput = document.getElementById('cPhoto');
-    const file = fileInput.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
-        const blob = e.target.result.split(',')[1];
-        const data = {
-            name: document.getElementById('cName').value,
-            age: document.getElementById('cAge').value,
-            address: document.getElementById('cAddress').value,
-            assets: document.getElementById('cAssets').value,
-            wifeAssets: document.getElementById('cWifeAssets').value,
-            seat: document.getElementById('cSeat').value,
-            reason: document.getElementById('cReason').value,
-            imageBlob: blob,
-            imageName: file.name
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: params,
+                mode: 'no-cors' 
+            })
+            .then(() => {
+                btn.innerText = "সফল!";
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerText = "নমিনেশন জমা দিন";
+                    closeModal('candidateModal');
+                    openModal('congratsModal');
+                    form.reset();
+                }, 1000);
+            })
+            .catch(error => {
+                alert("Error! শিটে ডাটা পাঠানো সম্ভব হয়নি।");
+                btn.disabled = false;
+                btn.innerText = "নমিনেশন জমা দিন";
+            });
         };
-
-        // এই URL টি আপনার Google Apps Script থেকে রিপ্লেস করবেন
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmTUPql8sYk8SfMTBgEQ8SD1B5dvU9l1thBYLF_qGoRSevAJ6G0BQWJjWaWvR5tJH7jA/exec';
-
-        fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify(data)
-        })
-        .then(res => {
-            alert("প্রার্থী আবেদন সফলভাবে সম্পন্ন হয়েছে!");
-            closeCandidateForm();
-            document.getElementById('candidateForm').reset();
-            btn.innerText = "আবেদন জমা দিন";
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            alert("অনুগ্রহ করে একটি ছবি নির্বাচন করুন।");
             btn.disabled = false;
+            btn.innerText = "নমিনেশন জমা দিন";
+        }
+    });
+
+    // সদস্য ফরমের Fetcher (ছবি ছাড়া)
+    document.getElementById('joinForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const f = e.target;
+        const b = f.querySelector('button[type="submit"]');
+        b.innerText = "জমা হচ্ছে...";
+        b.disabled = true;
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(f), mode: 'no-cors' })
+        .then(() => {
+            alert("তথ্য সংরক্ষিত হয়েছে!");
+            b.innerText = "আবেদন জমা দিন";
+            b.disabled = false;
+            closeModal('joinModal');
+            f.reset();
         })
-        .catch(err => {
-            alert("Error: " + err);
-            btn.disabled = false;
+        .catch(() => {
+            alert("ত্রুটি হয়েছে!");
+            b.disabled = false;
         });
-    };
-    reader.readAsDataURL(file);
-});
+    });
 
-// Original PDF Function
-function downloadPDF(){
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const name = document.getElementById('name').value;
-    // ... (Your existing PDF code here)
-    doc.text(`Membership Certificate for ${name}`, 20, 20);
-    doc.save(`${name}_certificate.pdf`);
-}
+    // ২. পিডিএফ ডাউনলোড
+    function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const name = document.getElementById('cName').value || "Candidate";
+        doc.text("Nomination Confirmation - VMP", 20, 20);
+        doc.text(`Candidate: ${name}`, 20, 40);
+        doc.text(`Seat: ${document.getElementById('cSeat').value}`, 20, 50);
+        doc.save(`Nomination_${name}.pdf`);
+    }
+
+    // ৩. কন্টেন্ট ও ডিলিট ফিচার
+    const textIds = ['partyName', 'slogan', 'aboutHeader', 'aboutBody', 'id1', 'id2', 'id3', 'leadersHeader', 'galleryHeader'];
+    function loadContent() {
+        textIds.forEach(id => {
+            const saved = localStorage.getItem('txt-' + id);
+            if(saved) {
+                const el = document.getElementById('txt-' + id);
+                if(el) el.innerText = saved;
+            }
+        });
+
+        let leaders = JSON.parse(localStorage.getItem('vmpLeaders')) || [];
+        document.getElementById('leader-list').innerHTML = leaders.map(l => `
+            <div class="leader-card animate__animated animate__fadeIn">
+                <img src="${l.img || 'https://via.placeholder.com/120'}" class="leader-photo">
+                <h4>${l.name}</h4><p>${l.role}</p>
+            </div>`).join('');
+
+        let photos = JSON.parse(localStorage.getItem('vmpGallery')) || [];
+        document.getElementById('gallery-list').innerHTML = photos.map(p => `
+            <div class="gallery-item animate__animated animate__zoomIn"><img src="${p.url}"></div>`).join('');
+    }
+
+    function saveAllTexts() {
+        textIds.forEach(id => {
+            const val = document.getElementById('edit-' + id)?.value;
+            if(val) { localStorage.setItem('txt-' + id, val); document.getElementById('txt-' + id).innerText = val; }
+        });
+        alert("আপডেট সফল!");
+    }
+
+    function saveLeader() {
+        const name = document.getElementById('leaderName').value;
+        const role = document.getElementById('leaderRole').value;
+        const img = document.getElementById('leaderImg').value;
+        let leaders = JSON.parse(localStorage.getItem('vmpLeaders')) || [];
+        leaders.push({id: Date.now(), name, role, img});
+        localStorage.setItem('vmpLeaders', JSON.stringify(leaders));
+        location.reload();
+    }
+
+    function deleteLeader(id) {
+        let l = JSON.parse(localStorage.getItem('vmpLeaders')) || [];
+        localStorage.setItem('vmpLeaders', JSON.stringify(l.filter(i => i.id !== id)));
+        location.reload();
+    }
+
+    function saveGalleryPhoto() {
+        const url = document.getElementById('galleryImgUrl').value;
+        let photos = JSON.parse(localStorage.getItem('vmpGallery')) || [];
+        photos.push({id: Date.now(), url});
+        localStorage.setItem('vmpGallery', JSON.stringify(photos));
+        location.reload();
+    }
+
+    function deletePhoto(id) {
+        let p = JSON.parse(localStorage.getItem('vmpGallery')) || [];
+        localStorage.setItem('vmpGallery', JSON.stringify(p.filter(i => i.id !== id)));
+        location.reload();
+    }
+
+    function adminLogin() {
+        if(prompt("User:") === "admin" && prompt("Pass:") === "1234") {
+            document.getElementById('adminPanel').style.display='block';
+            let l = JSON.parse(localStorage.getItem('vmpLeaders')) || [];
+            document.getElementById('admin-leader-list').innerHTML = l.map(i => `<div class="del-item">${i.name} <button class="del-btn" onclick="deleteLeader(${i.id})">Del</button></div>`).join('');
+            let p = JSON.parse(localStorage.getItem('vmpGallery')) || [];
+            document.getElementById('admin-gallery-list').innerHTML = p.map(i => `<div class="del-item">Photo ID: ${i.id} <button class="del-btn" onclick="deletePhoto(${i.id})">Del</button></div>`).join('');
+        }
+    }
+
+    window.onload = loadContent;
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    function toggleDarkMode() { document.body.classList.toggle('dark-mode'); }
+    function toggleLanguage() { alert("Language feature coming soon!"); }
 </script>
 
 </body>
